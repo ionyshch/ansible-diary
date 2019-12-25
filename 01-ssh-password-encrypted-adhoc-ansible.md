@@ -17,6 +17,7 @@
   - [Using ansible -vvvv](#using-ansible--vvvv)
   - [Using ansible-vault](#using-ansible-vault)
 - [Result](#result)
+- [References](#references)
 
 ## Context
 
@@ -154,3 +155,7 @@ Vault password:
 ubuntu-18.04-win10 | CHANGED | rc=0 >>
 xterm-256color
 ```
+
+## References
+
+- [ansible ssh connection variables](https://docs.ansible.com/ansible/latest/plugins/connection/ssh.html#ssh-connection)
