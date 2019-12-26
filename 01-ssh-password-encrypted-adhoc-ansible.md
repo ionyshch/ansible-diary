@@ -132,7 +132,7 @@ Must print JSON with three variables, password in plain text.
 Until I found that encrypted file is empty logging in with ssh succeeded, while logging in with ansible failed. `-vvvv` switch to the rescue.
 
 ```bash
-ansible ubuntu-18.04-win10 -vvvv --ask-vault-pass -i hosts.yaml -a "echo $TERM"
+ansible ubuntu-18.04-win10 -vvvv --ask-vault-pass -i hosts.yaml -a 'echo $SSH_CLIENT'
 ```
 
 This printed ssh command line and it had password authentication disabled. This hinted me that there may be no password provided.
@@ -150,11 +150,13 @@ You must see variables and plain text (unencrypted) values.
 ## Result
 
 ```bash
-ansible ubuntu-18.04-win10 --ask-vault-pass -i hosts.yaml -a "echo $TERM"
+ansible ubuntu-18.04-win10 --ask-vault-pass -i hosts.yaml -a 'echo $SSH_CLIENT'
 Vault password:
 ubuntu-18.04-win10 | CHANGED | rc=0 >>
-xterm-256color
+192.168.1.32 57149 22
 ```
+
+Note single quotes around `echo $SSH_CLIENT`. They prevent variable expansion on managements host. If one use double quotes, then expansion would happen on management host rather than on remote.
 
 ## References
 
